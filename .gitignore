@@ -1,0 +1,8 @@
+# .gitignore
+/tests/
+/backup/
+/__pycache__/
+/app/__pycache__/
+/*.pyc
+pw-dump.json
+**/pw-dump.json
