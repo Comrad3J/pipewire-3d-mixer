@@ -3,3 +3,4 @@ PyQt5-Qt5==5.15.16
 PyQt5_sip==12.17.0
 pysofaconventions
 python-sofa
+matplotlib

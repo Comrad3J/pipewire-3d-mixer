@@ -1,6 +1,6 @@
 # .gitignore
 /tests/
-/backup/
+/backups/
 /__pycache__/
 /app/__pycache__/
 /*.pyc
