@@ -4,13 +4,13 @@ This software is under active development and intended for testing, experimentat
 
 # PipeWire 3d Mixer
 
-For now only a 2d gui version. It supports azimuth and distance control for spatial positioning of multiple virtual audio sources in real time. It works with PipeWire built-in sofa spatial filters.
+For now only a 2d gui version. It supports azimuth and distance control for spatial positioning of up to 8 multiple virtual audio sources in real time. It works by constructing a filter-chain of PipeWire built-in sofa spatial filters.
 
 # Installation and configuration
 
 1. Clone this repo
 2. Update your PipeWire config
-   Copy the provided `4_channel_spatializer.conf` file and either:
+   Copy the provided `4/8_channel_spatializer.conf` file and either:
 
    - Replace your existing config:  
      ```bash
@@ -22,7 +22,7 @@ For now only a 2d gui version. It supports azimuth and distance control for spat
 2. Edit your HRTF (SOFA) file path
    In the config, locate and update the path to your SOFA file:
 
-    - hrtf-path = /path/to/hrtf-b_nh724.sofa
+    - hrtf-path = /path/to/file.sofa
 
 3. Setup Python environment
 ```bash
