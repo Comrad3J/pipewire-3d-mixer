@@ -118,7 +118,6 @@ class MapView(QGraphicsView):
         center.setBrush(QBrush(Qt.black))
         self.scene().addItem(center)
 
-        # Draw concentric circles for distance scale
         max_radius = 250
         min_m = 0.1
         max_m = 100
@@ -389,14 +388,14 @@ def get_node_info(target_id):
     n_channels = None
     port_ids = []
 
-    # Step 1: Find node info by ID and extract n-input-ports
+    # Find node info by ID and extract n-input-ports
     for node in nodes:
         if node.get("type") == "PipeWire:Interface:Node" and node.get("id") == target_id:
             info = node.get("info", {})
             n_channels = info.get("n-input-ports", 0)
             break
 
-    # Step 2: Map input-port-id to output-port-id (from links)
+    # Map input-port-id to output-port-id (from links)
     input_to_output_port = {}
     for node in nodes:
         if node.get("type") == "PipeWire:Interface:Link":
@@ -406,7 +405,7 @@ def get_node_info(target_id):
                 output_port = info.get("output-port-id")
                 input_to_output_port[input_port] = output_port
 
-    # Step 3: Map output-port-id to port.alias or port.name (from ports)
+    # Map output-port-id to port.alias or port.name (from ports)
     output_port_to_alias = {}
     for node in nodes:
         if node.get("type") == "PipeWire:Interface:Port":
@@ -417,13 +416,13 @@ def get_node_info(target_id):
             if alias:
                 output_port_to_alias[port_id] = alias
 
-    # Step 4: Map input-port-id to alias via output-port-id
+    # Map input-port-id to alias via output-port-id
     input_port_to_alias = {}
     for in_port, out_port in input_to_output_port.items():
         alias = output_port_to_alias.get(out_port, "Unknown")
         input_port_to_alias[in_port] = alias
 
-    # Step 5: Sort and label channels
+    # Sort and label channels
     sorted_inputs = sorted(input_port_to_alias.items())
     channel_map = {in_port: idx + 1 for idx, (in_port, _) in enumerate(sorted_inputs)}
     labeled_channels = {channel_map[in_port]: alias for in_port, alias in sorted_inputs}
@@ -440,7 +439,6 @@ def get_node_info(target_id):
 
 if __name__ == "__main__":
     # the target name is set in the config file as media.name
-    # go through which of these informations you actually need to fetch
     
     node_id = get_node_id("effect_input.multi_spatial")
     info = get_node_info(node_id)
