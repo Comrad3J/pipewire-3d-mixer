@@ -1,9 +1,12 @@
 # Disclaimer
+
 This is actively being developed as part of my thesis project.
 
 # PipeWire 3D Audio Mixer
 
-A "speculative" interface which enables binoural spatial listening multiple app audio sources on your linux desktop enviroment. The idea is that in case of overlapping audio streams this interface allows users better cognative organization and seperation of those streams.
+A "speculative" interface which enables spatial listening of multiple app audio sources in your desktop enviroment. 
+
+The idea is that in case of overlapping audio streams this type of interface allows users better cognative organization and seperation of those streams.
 
 ## Features
 
