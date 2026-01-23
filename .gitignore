@@ -1,11 +1,46 @@
 build/
 .vscode/
+docs/
 
 *.o
 *.a
 *.so
 *.lo
 *.la
+*.md
+*.tex
+*.pdf
 
 *.log
 *.swp
+# Meson build output
+/build/
+/meson-info/
+/meson-logs/
+/meson-private/
+compile_commands.json
+
+# Compiled binaries and libraries
+*.o
+*.obj
+*.a
+*.la
+*.lo
+*.so
+*.so.*
+*.dll
+*.dylib
+*.exe
+*.out
+
+# Misc build artifacts
+*.pdb
+*.gcno
+*.gcda
+*.gcov
+*.dep
+
+# Editor backups
+*~
+*.swp
+*.swo
