@@ -32,6 +32,7 @@ static int cleanup_links_task(struct spa_loop *loop, bool async, uint32_t seq,
 static void run_on_pw_loop(AppData *app, spa_invoke_func_t func, void *data, size_t size);
 static void set_slot_gain(AppData *data, int slot, float gain);
 static float mirror_azimuth(float az);
+static void send_sofa_control_force(AppData *data, int source_idx);
 
 static float radius_to_gain(float radius_pct)
 {
@@ -398,6 +399,7 @@ static int set_source_bypass_internal(struct spa_loop *loop, bool async, uint32_
     if (!app || source_idx < 0 || source_idx >= MAX_SOURCES)
         return 0;
 
+    bool was_bypassed = app->sources[source_idx].bypass;
     app->sources[source_idx].bypass = bypass;
 
     destroy_links_from_node(app, find_source_node_id(app, source_idx));
@@ -405,6 +407,7 @@ static int set_source_bypass_internal(struct spa_loop *loop, bool async, uint32_
     {
         create_sink_links(app, source_idx);
         app->sources[source_idx].is_playing = true;
+        app->sources[source_idx].last_valid = false;
     }
     else
     {
@@ -415,7 +418,14 @@ static int set_source_bypass_internal(struct spa_loop *loop, bool async, uint32_
         if (app->filter_in_gid[base + 1])
             app->filter_in_occupied[base + 1] = true;
         apply_connection_state(app, source_idx);
-        send_sofa_control(app, source_idx);
+        if (was_bypassed)
+        {
+            send_sofa_control_force(app, source_idx);
+        }
+        else
+        {
+            send_sofa_control(app, source_idx);
+        }
     }
     apply_connection_state(app, source_idx);
     return 0;
