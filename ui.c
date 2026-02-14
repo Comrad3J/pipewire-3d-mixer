@@ -325,7 +325,8 @@ static GtkWidget *build_source_control(AppData *data, int idx, const char *sourc
 
     GtkWidget *bypass_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
     GtkWidget *bypass_check = gtk_check_button_new_with_label("Bypass");
-    gtk_widget_set_sensitive(bypass_check, false);
+    /* Keep bypass usable for active slots even when no stream is currently playing. */
+    gtk_widget_set_sensitive(bypass_check, data->sources[idx].active);
     data->bypass_checkboxes[idx] = bypass_check;
     g_object_set_data(G_OBJECT(bypass_check), "app_data", data);
     g_signal_connect(bypass_check, "toggled", G_CALLBACK(on_bypass_toggled), GINT_TO_POINTER(idx));

@@ -21,6 +21,7 @@ typedef struct {
 typedef struct {
     char *name;
     char *desc;
+    char *app_name;
     char *media_class;
     char *icon_name;
 } NodeInfo;
@@ -51,6 +52,8 @@ typedef struct {
     float radius;      /* 0-100 */
     float width;       /* stereo width in degrees */
     bool bypass;       /* true → bypass HRTF for this source */
+    bool fixed_loudness; /* true -> ignore distance attenuation for this source */
+    float fixed_loudness_gain; /* gain used when fixed_loudness=true */
     bool active;
     bool is_playing;
     bool initial_position_set;
@@ -100,6 +103,7 @@ typedef struct {
     StereoSlot stereo_slots[MAX_STEREO_SLOTS];
 
     uint32_t default_sink_node_id;
+    float fixed_loudness_gain_default;
 } AppData;
 
 void init_app_data(AppData *data);

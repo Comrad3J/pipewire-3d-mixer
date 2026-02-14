@@ -28,6 +28,7 @@ void init_app_data(AppData *data)
         data->sources[i].radius = 50.0f;
         data->sources[i].width = 20.0f;
         data->sources[i].bypass = false;
+        data->sources[i].fixed_loudness = false;
         data->sources[i].app_label[0] = '\0';
         data->sources[i].active = false;
         data->sources[i].is_playing = false;
