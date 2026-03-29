@@ -17,7 +17,7 @@ Native C/GTK4 controller for a PipeWire filter-chain that spatializes up to 4 st
 - `meson`
 - `ninja`
 - `pw-cli`
-- a local `.sofa` HRTF file
+- a `.sofa` HRTF file if you do not want to use the bundled one
 
 Examples:
 
@@ -48,12 +48,33 @@ The app expects a PipeWire filter-chain with these node names:
 
 The repository ships a portable config template in `sp_2.conf`. It uses `@SOFA_FILE@` as a placeholder so you can install it on any Linux system.
 
-### Recommended setup
+## Bundled SOFA File
 
-Run the helper script and point it at your SOFA file if autodetection does not find one:
+The repository now includes the SOFA file this project is currently using:
+
+```bash
+assets/sofa/FABIAN_HRIR_modeled_HATO_0.sofa
+```
+
+`setup.sh` will prefer that bundled file automatically. You can still override it with:
 
 ```bash
 PW_MIXER_SOFA_FILE=/path/to/your/file.sofa ./setup.sh
+```
+
+Attribution from the file metadata:
+
+- Database: `FABIAN head-related transfer function database`
+- Organization: Audio Communication Group, TU Berlin
+- License: CC-BY 4.0
+- Original dataset DOI: `10.14279/depositonce-5718.4`
+
+### Recommended setup
+
+Run the helper script. It will use the bundled SOFA file by default, and you can still override it with `PW_MIXER_SOFA_FILE` when needed:
+
+```bash
+./setup.sh
 ```
 
 By default the script installs the rendered config to:
@@ -66,7 +87,7 @@ ${XDG_CONFIG_HOME:-$HOME/.config}/pipewire/pipewire.conf.d/sp_2.conf
 
 ```bash
 mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}/pipewire/pipewire.conf.d"
-sed "s|@SOFA_FILE@|/path/to/your/file.sofa|g" sp_2.conf \
+sed "s|@SOFA_FILE@|$(pwd)/assets/sofa/FABIAN_HRIR_modeled_HATO_0.sofa|g" sp_2.conf \
   > "${XDG_CONFIG_HOME:-$HOME/.config}/pipewire/pipewire.conf.d/sp_2.conf"
 ```
 

@@ -14,6 +14,7 @@ detect_sofa_file() {
     local candidate found
 
     for candidate in \
+        "$SCRIPT_DIR/assets/sofa/FABIAN_HRIR_modeled_HATO_0.sofa" \
         "/usr/share/sofa-hrtf/hrtf-b_nh724.sofa" \
         "/usr/local/share/sofa-hrtf/hrtf-b_nh724.sofa" \
         "$HOME/.config/hrtf-sofa/FABIAN_HRIR_modeled_HATO_0.sofa"
@@ -25,6 +26,7 @@ detect_sofa_file() {
     done
 
     for candidate in \
+        "$SCRIPT_DIR/assets/sofa" \
         "$HOME/.config/hrtf-sofa" \
         "${XDG_DATA_HOME:-$HOME/.local/share}/sofa" \
         "/usr/share/sofa-hrtf" \
