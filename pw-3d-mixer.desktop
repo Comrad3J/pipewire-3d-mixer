@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=PipeWire 3D Mixer
+Comment=Control a PipeWire SOFA spatial mixer
+Exec=pw-3d-mixer
+Icon=audio-card
+Terminal=false
+Categories=AudioVideo;Audio;
+Keywords=PipeWire;Audio;Mixer;Spatial;SOFA;

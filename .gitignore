@@ -20,6 +20,12 @@ docs/
 /meson-private/
 compile_commands.json
 
+# Local workspace files
+/.idea/
+/.vscode/
+/pipewire-3d-mixer-c/
+.DS_Store
+
 # Compiled binaries and libraries
 *.o
 *.obj
@@ -39,6 +45,16 @@ compile_commands.json
 *.gcda
 *.gcov
 *.dep
+
+# LaTeX build output
+docs/diplomska/*.aux
+docs/diplomska/*.fdb_latexmk
+docs/diplomska/*.fls
+docs/diplomska/*.log
+docs/diplomska/*.out
+docs/diplomska/*.synctex.gz
+docs/diplomska/*.toc
+docs/diplomska/main.pdf
 
 # Editor backups
 *~
