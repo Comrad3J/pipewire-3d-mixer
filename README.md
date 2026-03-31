@@ -109,34 +109,6 @@ Verify the filter-chain is visible:
 pw-cli ls Node | grep multi_spatial
 ```
 
-## Spatial Notification CLI
-
-```bash
-./build/spatial-notification \
-  --file /path/to/notify.mp3 \
-  --channel 3 \
-  --azimuth 45 \
-  --elevation 10
-```
-
-Options:
-
-- `--channel 1..8` maps to `spk1..spk8`
-- `--azimuth` uses degrees in the 0..360 range
-- `--elevation` uses degrees in the -90..90 range
-- `ffmpeg` must be available to decode compressed audio files
-
-## Installing
-
-```bash
-meson install -C build
-```
-
-This installs:
-
-- `pw-3d-mixer`
-- the `pw-3d-mixer.desktop` launcher
-
 ## Repository Notes
 
 - Generated Meson output, editor settings, and LaTeX build artifacts are ignored
